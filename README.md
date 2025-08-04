@@ -4,7 +4,7 @@ Welcome to **Music Studio Player**, a modern, browser-based music player that le
 
 ## 🌐 Live Demo
 
-> [ [https://underwaterbet023.github.io/Music-Player-App/](https://underwaterbet023.github.io/Music-Player-App/) ]   *(Live Demo of my website)*
+> [🎧 Live Demo of my website](https://underwaterbet023.github.io/Music-Player-App/)  
 
 ---
 
