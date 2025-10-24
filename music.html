@@ -1907,19 +1907,25 @@
                     const albumItem = document.createElement('div');
                     const isUnavailable = !track.file || !track.fileAvailable;
                     albumItem.className = `album-item ${actualIndex === this.currentTrackIndex ? 'active' : ''} ${isUnavailable ? 'unavailable' : ''}`;
+                    albumItem.style.cursor = 'pointer';
+                    albumItem.onclick = function(event) {
+                        if (!isUnavailable) {
+                            musicPlayer.selectAndPlayTrack(track.id);
+                        }
+                    };
                     
                     const heartIcon = this.favoriteTrackIds.has(track.id) ? '❤️' : '🤍';
                     const statusText = isUnavailable ? '<div class="track-status">File not available</div>' : '';
                     
                     albumItem.innerHTML = `
                         <button class="delete-btn" onclick="event.stopPropagation(); musicPlayer.deleteTrack(${track.id})">×</button>
-                        <div class="album-cover" style="background: ${track.color}; cursor: pointer;" onclick="musicPlayer.selectAndPlayTrack(${track.id})">
+                        <div class="album-cover" style="background: ${track.color};">
                             ${track.cover}
                         </div>
                         <div class="album-title" title="${track.title}">${this.truncateText(track.title, 15)}</div>
                         <div class="album-artist" title="${track.artist}">${this.truncateText(track.artist, 12)}</div>
                         ${statusText}
-                        <div style="margin-top: 8px; cursor: pointer; font-size: 18px;" onclick="musicPlayer.toggleFavorite(${track.id})">${heartIcon}</div>
+                        <div style="margin-top: 8px; cursor: pointer; font-size: 18px;" onclick="event.stopPropagation(); musicPlayer.toggleFavorite(${track.id})">${heartIcon}</div>
                     `;
                     this.albumGrid.appendChild(albumItem);
                 });
